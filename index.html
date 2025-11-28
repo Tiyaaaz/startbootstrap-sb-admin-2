@@ -743,8 +743,8 @@
 
     <script>
     // --- GANTI NILAI INI ---
-    const apiKey = '7a99b1f35ddec65a0f9070dd632f2225'; // << HARUS DIGANTI!
-    const city = 'Bandung'; // << GANTI NAMA KOTA ANDA
+    const apiKey = '188b49fa36d61884ada153bafd9c7b5b'; // << HARUS DIGANTI!
+    const city = 'Yogyakarta'; // << GANTI NAMA KOTA ANDA
     // Konstruksi URL yang BENAR menggunakan Template Literal (backtick: `)
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     fetch(apiUrl)
@@ -762,7 +762,7 @@
             const namaKota = data.name;
             // Update elemen HTML menggunakan Template Literal yang BENAR
             document.getElementById("cuaca").innerText =
-                `Lokasi: ${Bandung} | Suhu: ${27.7}°C | Kelembapan: ${100}%`;
+                `Lokasi: ${Lokasi} | Suhu: ${Suhu}°C | Kelembapan: ${Kelembapan}%`;
         })
         .catch(error => {
             // Tampilkan pesan kesalahan jika fetch gagal
