@@ -737,6 +737,42 @@
         </div>
     </div>
 
+    <div>
+        <h3>Data Sensor Cuaca</h3>
+        <p id="cuaca">Memuat data...</p>
+
+    <script>
+
+  const apiKey = '7a99b1f35ddec65a0f9070dd632f2225';
+
+  const city = 'Bandung';
+
+
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=city   appid={apiKey}&units=metric`)
+
+    .then(response => response.json())
+
+    .then(data => {
+
+      const suhu = data.main.temp;
+
+      const kelembapan = data.main.humidity;
+
+      document.getElementById("cuaca").innerText =
+
+        `Suhu: suhu°C, Kelembapan:{kelembapan}%`;
+
+    })
+
+    .catch(error => {
+
+      document.getElementById("cuaca").innerText = "Gagal mengambil data.";
+
+    });
+
+</script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
