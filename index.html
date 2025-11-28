@@ -739,33 +739,30 @@
 
     <div>
         <h3>Data Sensor Cuaca</h3>
-        <p id="cuaca">Memuat data...</p>
+        <p id="cuaca"></p>
 
     <script>
-    // --- GANTI NILAI INI ---
-    const apiKey = '7a99b1f35ddec65a0f9070dd632f2225'; 
-    const city = 'Bandung'; 
-    // Konstruksi URL yang BENAR menggunakan Template Literal (backtick: `)
+    const apiKey = '7a99b1f35ddec65a0f9070dd632f2225';
+    const city = 'Bandung';
+
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
-                // Memberi pesan kesalahan jika API Key/Kota salah
                 throw new Error(`HTTP error! Status: ${response.status}. Cek kembali API Key dan nama kota.`);
             }
             return response.json();
         })
         .then(data => {
-            // Ambil data yang diperlukan
             const suhu = data.main.temp;
             const kelembapan = data.main.humidity;
             const namaKota = data.name;
-            // Update elemen HTML menggunakan Template Literal yang BENAR
+
             document.getElementById("cuaca").innerText =
-                `Lokasi: ${nama kota} | Suhu: ${suhu}°C | Kelembapan: ${kelembapan}%`;
+                `Lokasi: ${namaKota} | Suhu: ${suhu}°C | Kelembapan: ${kelembapan}%`;
         })
         .catch(error => {
-            // Tampilkan pesan kesalahan jika fetch gagal
             document.getElementById("cuaca").innerText = `Gagal mengambil data. (${error.message})`;
             console.error(error);
         });
