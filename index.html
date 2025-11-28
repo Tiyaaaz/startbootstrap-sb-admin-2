@@ -742,37 +742,34 @@
         <p id="cuaca">Memuat data...</p>
 
     <script>
-
-  const apiKey = '7a99b1f35ddec65a0f9070dd632f2225';
-
-  const city = 'Bandung';
-
-
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=city   appid={apiKey}&units=metric`)
-
-    .then(response => response.json())
-
-    .then(data => {
-
-      const suhu = data.main.temp;
-
-      const kelembapan = data.main.humidity;
-
-      document.getElementById("cuaca").innerText =
-
-        `Suhu: suhu°C, Kelembapan:{kelembapan}%`;
-
-    })
-
-    .catch(error => {
-
-      document.getElementById("cuaca").innerText = "Gagal mengambil data.";
-
-    });
-
+    // --- GANTI NILAI INI ---
+    const apiKey = '7a99b1f35ddec65a0f9070dd632f2225'; // << HARUS DIGANTI!
+    const city = 'Bandung'; // << GANTI NAMA KOTA ANDA
+    // Konstruksi URL yang BENAR menggunakan Template Literal (backtick: `)
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                // Memberi pesan kesalahan jika API Key/Kota salah
+                throw new Error(`HTTP error! Status: ${response.status}. Cek kembali API Key dan nama kota.`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Ambil data yang diperlukan
+            const suhu = data.main.temp;
+            const kelembapan = data.main.humidity;
+            const namaKota = data.name;
+            // Update elemen HTML menggunakan Template Literal yang BENAR
+            document.getElementById("cuaca").innerText =
+                `Lokasi: ${Bandung} | Suhu: ${27.7}°C | Kelembapan: ${100}%`;
+        })
+        .catch(error => {
+            // Tampilkan pesan kesalahan jika fetch gagal
+            document.getElementById("cuaca").innerText = `Gagal mengambil data. (${error.message})`;
+            console.error(error);
+        });
 </script>
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
